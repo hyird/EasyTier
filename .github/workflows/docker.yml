@@ -64,4 +64,4 @@ jobs:
           push: true
           file: .github/workflows/Dockerfile
           tags: |
-            yettacoleridge/easytier:${{ inputs.image_tag }}${{ inputs.mark_latest && ',easytier/easytier:latest' || '' }},
+            yettacoleridge/easytier:${{ inputs.image_tag }}${{ inputs.mark_latest && ',yettacoleridge/easytier:latest' || '' }},
