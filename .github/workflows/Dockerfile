@@ -25,21 +25,21 @@
     
     COPY --from=builder --chmod=755 /tmp/output/easytier-core /usr/local/bin/
     COPY --from=builder --chmod=755 /tmp/output/easytier-cli /usr/local/bin/
-    COPY --from=builder --chmod=755 /tmp/output/easytier-web-embed /usr/local/bin/
+    COPY --from=builder --chmod=755 /tmp/output/easytier-web /usr/local/bin/
         
-    RUN mkdir -p /etc/service/easytier-core /etc/service/easytier-web-embed
+    RUN mkdir -p /etc/service/easytier-core /etc/service/easytier-web
     
     RUN printf '#!/bin/sh\nexec /usr/local/bin/easytier-core $CORE_ARGS\n' > /etc/service/easytier-core/run && \
         chmod +x /etc/service/easytier-core/run
     
     RUN printf '#!/bin/sh\n\
     if [ "$EASYTIER_WEB_ENABLED" = "true" ]; then\n\
-      exec /usr/local/bin/easytier-web-embed $WEB_ARGS\n\
+      exec /usr/local/bin/easytier-web $WEB_ARGS\n\
     else\n\
-      echo "easytier-web-embed is disabled"\n\
+      echo "easytier-web is disabled"\n\
       exit 0\n\
-    fi\n' > /etc/service/easytier-web-embed/run && \
-        chmod +x /etc/service/easytier-web-embed/run
+    fi\n' > /etc/service/easytier-web/run && \
+        chmod +x /etc/service/easytier-web/run
     
     EXPOSE 11010/tcp 11010/udp 11011/udp 11011/tcp 11012/tcp
     
