@@ -21,7 +21,6 @@ on:
 
 jobs:
   docker:
-    if: contains('["KKRainbow"]', github.actor)
     runs-on: ubuntu-latest
     steps:
       -
